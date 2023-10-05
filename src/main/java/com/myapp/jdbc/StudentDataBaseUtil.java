@@ -80,7 +80,7 @@ public class StudentDataBaseUtil {
 //            String sql="insert into student (first_name, last_name, email) values (?, ?, ?)";
             String sql = "insert into student "
                     + "(first_name, last_name, email) "
-                    + "values (?, ?, ?) ";
+                    + "values (?, ?, ?)";
             myStmt = myConn.prepareStatement(sql);
 
             //set the param values for the student
@@ -103,7 +103,7 @@ public class StudentDataBaseUtil {
         PreparedStatement myStmt = null;
         ResultSet myRs = null;
         int studentId;
-        theStudentId = theStudentId.replace("=", "");
+//        theStudentId = theStudentId.replace("=", "");
         try {
             // convert student id to int
             studentId = Integer.parseInt(theStudentId);
@@ -174,7 +174,7 @@ public class StudentDataBaseUtil {
             //get connection database
             myConn = basicDataSource.getConnection();
             // create sql to delete the student data
-            String sql = "delete from student where id=? ";
+            String sql = "delete from student where id=?";
             //prepare statment
             myStmt = myConn.prepareStatement(sql);
             //set params

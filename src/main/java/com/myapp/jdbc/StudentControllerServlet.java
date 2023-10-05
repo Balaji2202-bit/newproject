@@ -59,9 +59,7 @@ public class StudentControllerServlet extends HttpServlet
                 case "LIST":
                     listStudents(req,resp);
                     break;
-                case "ADD":
-                    addStudent(req,resp);
-                    break;
+
                 case "LOAD":
                     loadStudent(req,resp);
                     break;
@@ -85,6 +83,32 @@ public class StudentControllerServlet extends HttpServlet
 
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+        try {
+            // read the command parameter
+            String theCOmmand = req.getParameter("command");
+
+            //if command is missing , then default  to listing the students
+            if (theCOmmand == null) {
+                theCOmmand = "LIST";
+            }
+            switch (theCOmmand) {
+                case "ADD":
+                    try {
+                        addStudent(req, resp);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+            }
+        }catch (Exception e)
+        {
+            throw new ServletException(e);
+        }
+    }
+
     private void searchStudents(HttpServletRequest req, HttpServletResponse resp) throws Exception
     {
         // read search name from form data
@@ -97,7 +121,7 @@ public class StudentControllerServlet extends HttpServlet
         req.setAttribute("STUDENT_LIST", students);
 
         // send to JSP page (view)
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/list-students.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/list_student.jsp");
         dispatcher.forward(req, resp);
     }
 

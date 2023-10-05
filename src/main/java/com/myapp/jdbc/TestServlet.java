@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 @WebServlet("/com.myapp.jdbc.TestServlet")
 public class TestServlet  extends HttpServlet {
     private static final long serialVersionID=1L;
@@ -37,7 +36,6 @@ public class TestServlet  extends HttpServlet {
         ResultSet myRs=null;
         try {
             myCon =dataSource.getConnection();
-
             // step 3: create a sql statement
             String sql="select*from student";
             myStmt = myCon.createStatement();
@@ -55,4 +53,10 @@ public class TestServlet  extends HttpServlet {
           e.printStackTrace();
         }
     }
+}
+class sts
+{
+    private int a;
+    private  int b;
+
 }
